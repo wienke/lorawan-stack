@@ -486,6 +486,12 @@
       ]
     }
   },
+  "NsAs": {
+    "HandleUplink": {
+      "file": "lorawan-stack/api/applicationserver.proto",
+      "http": []
+    }
+  },
   "ApplicationPackageRegistry": {
     "List": {
       "file": "lorawan-stack/api/applicationserver_packages.proto",
@@ -736,6 +742,7 @@
         "provider",
         "provider.mqtt",
         "provider.mqtt.client_id",
+        "provider.mqtt.headers",
         "provider.mqtt.password",
         "provider.mqtt.publish_qos",
         "provider.mqtt.server_url",
@@ -794,6 +801,7 @@
         "provider",
         "provider.mqtt",
         "provider.mqtt.client_id",
+        "provider.mqtt.headers",
         "provider.mqtt.password",
         "provider.mqtt.publish_qos",
         "provider.mqtt.server_url",
@@ -862,6 +870,7 @@
         "provider",
         "provider.mqtt",
         "provider.mqtt.client_id",
+        "provider.mqtt.headers",
         "provider.mqtt.password",
         "provider.mqtt.publish_qos",
         "provider.mqtt.server_url",
