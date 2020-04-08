@@ -30,6 +30,7 @@ require (
 	github.com/bluele/gcache v0.0.0-20190518031135-bc40bd653833
 	github.com/chrj/smtpd v0.1.2
 	github.com/disintegration/imaging v1.6.2
+	github.com/dustin/go-humanize v1.0.0
 	github.com/eclipse/paho.mqtt.golang v1.2.0
 	github.com/envoyproxy/protoc-gen-validate v0.4.0
 	github.com/felixge/httpsnoop v1.0.1
