@@ -13,11 +13,17 @@
 // limitations under the License.
 
 import React from 'react'
+import bind from 'autobind-decorator'
+import { defineMessages, injectIntl } from 'react-intl'
 import { Container, Col, Row } from 'react-grid-system'
 
+import api from '@console/api'
+
+import Button from '@ttn-lw/components/button'
 import DataSheet from '@ttn-lw/components/data-sheet'
 import Tag from '@ttn-lw/components/tag'
 import Spinner from '@ttn-lw/components/spinner'
+import toast from '@ttn-lw/components/toast'
 
 import Message from '@ttn-lw/lib/components/message'
 import DateTime from '@ttn-lw/lib/components/date-time'
@@ -33,16 +39,29 @@ import GatewayConnection from '@console/containers/gateway-connection'
 
 import withFeatureRequirement from '@console/lib/components/with-feature-requirement'
 
+import convertStrToDataUri from '@ttn-lw/lib/convert-str-to-data-uri'
+import downloadObjectAsFile from '@ttn-lw/lib/download-object-as-file'
+
 import PropTypes from '@ttn-lw/lib/prop-types'
 import sharedMessages from '@ttn-lw/lib/shared-messages'
 
 import { mayViewGatewayInfo } from '@console/lib/feature-checks'
+
+const m = defineMessages({
+  downloadGlobalConf: 'Download global_conf.json',
+  globalConf: 'Global configuration',
+  globalConfFailed: 'Failed to download global_conf.json'
+})
 
 @withRequest(({ gtwId, loadData }) => loadData(gtwId), () => false)
 @withFeatureRequirement(mayViewGatewayInfo, {
   redirect: '/',
 })
 export default class GatewayOverview extends React.Component {
+  state = {
+    globalConf: null,
+  }
+
   static propTypes = {
     apiKeysTotalCount: PropTypes.number,
     collaboratorsTotalCount: PropTypes.number,
@@ -56,6 +75,35 @@ export default class GatewayOverview extends React.Component {
   static defaultProps = {
     apiKeysTotalCount: undefined,
     collaboratorsTotalCount: undefined,
+  }
+
+  @bind
+  async getGlobalConf() {
+    if (this.state.globalConf) return
+
+    const { gtwId } = this.props
+
+    try {
+    const globalConf = await api.gateway.getGlobalConf(gtwId)
+    this.setState({ globalConf })
+    } catch(err) {
+      toast({
+        title: m.globalConfFailed,
+        message: err,
+        type: toast.types.ERROR,
+      })
+    }
+  }
+
+  @bind
+  async handleDownload() {
+    await this.getGlobalConf()
+
+    if(!this.state.globalConf)
+      return
+
+    const globalConfStr = convertStrToDataUri(this.state.globalConf)
+    downloadObjectAsFile(globalConfStr, 'global_conf.json')
   }
 
   render() {
@@ -119,6 +167,17 @@ export default class GatewayOverview extends React.Component {
           {
             key: sharedMessages.frequencyPlan,
             value: frequency_plan_id ? <Tag content={frequency_plan_id} /> : undefined,
+          },
+          {
+            key: m.globalConf,
+            value: (
+              <Button
+                type="button"
+                secondary
+                onClick={this.handleDownload}
+                message={m.downloadGlobalConf}
+              />
+            ),
           },
         ],
       },
