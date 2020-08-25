@@ -12,41 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-.link
-  &:not(.primary):not(.secondary)
-    text-decoration: none
-
-  &.primary
-    color: $c-active-blue
-
-    &:active,
-    &:hover
-      color: $c-active-blue-hover
-      text-decoration: underline
-
-    &.link-visited
-      &:visited
-        color: $c-active-blue-active
-
-  &.secondary
-    color: $tc-subtle-gray
-    &:active,
-    &:hover
-      color: $tc-deep-gray
-
-    &.link-visited
-      &:visited
-        color: $tc-deep-gray
-
-  &.primary, &.secondary
-    &.disabled
-      opacity: .5
-      cursor: not-allowed
-
-.icon
-  nudge('up', 2px)
-  margin-left: $cs.xxs
-  font-size: 0.9rem
-
-.doc-icon
-  nudge('up')
+export default function stringToSlug(text) {
+  return text
+    .toString()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]+/g, '')
+    .replace(/--+/g, '-')
+}

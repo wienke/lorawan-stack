@@ -202,6 +202,7 @@ class GatewayDataForm extends React.Component {
           max={8}
           placeholder={sharedMessages.gatewayEUI}
           component={Input}
+          glossaryTerm="GatewayEUI"
         />
         <Form.Field
           title={sharedMessages.gatewayName}
@@ -241,7 +242,11 @@ class GatewayDataForm extends React.Component {
           description={sharedMessages.attributeDescription}
         />
         <Message component="h4" content={sharedMessages.lorawanOptions} />
-        <GsFrequencyPlansSelect name="frequency_plan_id" menuPlacement="top" />
+        <GsFrequencyPlansSelect
+          name="frequency_plan_id"
+          menuPlacement="top"
+          glossaryTerm="Frequency plan"
+        />
         <Form.Field
           title={sharedMessages.gatewayScheduleDownlinkLate}
           name="schedule_downlink_late"

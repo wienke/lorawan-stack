@@ -127,7 +127,12 @@ const NetworkSettingsForm = props => {
       validationContext={validationContext}
       error={error}
     >
-      <NsFrequencyPlansSelect required autoFocus name="frequency_plan_id" />
+      <NsFrequencyPlansSelect
+        required
+        autoFocus
+        glossaryTerm="Frequency Plan"
+        name="frequency_plan_id"
+      />
       <Form.Field
         required
         disabled
@@ -142,11 +147,13 @@ const NetworkSettingsForm = props => {
         name="lorawan_phy_version"
         component={Select}
         options={lorawanPhyVersionOptions}
+        glossaryTerm="Regional Parameters"
       />
       <Form.Field
         title={sharedMessages.supportsClassC}
         name="supports_class_c"
         component={Checkbox}
+        glossaryTerm="Class C"
       />
       {(isMulticast || isABP) && (
         <>
@@ -180,6 +187,7 @@ const NetworkSettingsForm = props => {
             }
             component={Input.Generate}
             onGenerateValue={generate16BytesKey}
+            glossaryTerm="Network Session Key"
           />
           {lwVersion >= 110 && (
             <Form.Field

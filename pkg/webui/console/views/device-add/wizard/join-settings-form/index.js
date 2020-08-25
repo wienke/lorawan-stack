@@ -89,6 +89,7 @@ const JoinSettingsForm = React.memo(props => {
             disabled={!mayEditKeys}
             mayGenerateValue={mayEditKeys}
             onGenerateValue={generate16BytesKey}
+            glossaryTerm="AppKey"
           />
           {lwVersion >= 110 && (
             <Form.Field

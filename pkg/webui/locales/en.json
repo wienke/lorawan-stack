@@ -521,6 +521,7 @@
   "lib.shared-messages.general": "General",
   "lib.shared-messages.generalInformation": "General information",
   "lib.shared-messages.generalSettings": "General settings",
+  "lib.shared-messages.glossaryLinkTitle": "Click here for an explanation of this field",
   "lib.shared-messages.hardware": "Hardware",
   "lib.shared-messages.hardwareVersion": "Hardware version",
   "lib.shared-messages.homeNetID": "Home NetID",

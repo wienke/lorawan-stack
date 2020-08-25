@@ -18,6 +18,7 @@ import classnames from 'classnames'
 import { getIn } from 'formik'
 
 import Icon from '@ttn-lw/components/icon'
+import Link from '@ttn-lw/components/link'
 
 import Message from '@ttn-lw/lib/components/message'
 
@@ -27,6 +28,8 @@ import PropTypes from '@ttn-lw/lib/prop-types'
 import FormContext from '../context'
 
 import style from './field.styl'
+
+import sharedMessages from '@ttn-lw/lib/shared-messages'
 
 export function getPassThroughProps(props, excludeProps) {
   const rest = {}
@@ -68,6 +71,7 @@ class FormField extends React.Component {
     ]).isRequired,
     decode: PropTypes.func,
     description: PropTypes.message,
+    glossaryTerm: PropTypes.string,
     disabled: PropTypes.bool,
     encode: PropTypes.func,
     name: PropTypes.string.isRequired,
@@ -86,6 +90,7 @@ class FormField extends React.Component {
     onChange: () => null,
     warning: '',
     description: '',
+    glossaryTerm: '',
     readOnly: false,
     required: false,
   }
@@ -161,6 +166,7 @@ class FormField extends React.Component {
       disabled,
       required,
       readOnly,
+      glossaryTerm,
       component: Component,
     } = this.props
     const { horizontal, disabled: formDisabled } = this.context
@@ -173,6 +179,7 @@ class FormField extends React.Component {
     const hasError = Boolean(fieldError)
     const hasWarning = Boolean(warning)
     const hasDescription = Boolean(description)
+    const hasGlossaryTerm = Boolean(glossaryTerm)
 
     const showError = fieldTouched && hasError
     const showWarning = !hasError && hasWarning
@@ -226,6 +233,15 @@ class FormField extends React.Component {
       <div className={cls} data-needs-focus={showError}>
         <label className={style.label} htmlFor={fieldComponentProps.id}>
           <Message content={title} className={style.title} />
+          {hasGlossaryTerm && (
+            <Link.GlossaryLink
+              title={sharedMessages.glossaryLinkTitle}
+              hideTerm
+              beforeIcon=""
+              afterIcon="help"
+              term={glossaryTerm}
+            />
+          )}
         </label>
         <div className={style.componentArea}>
           <Component

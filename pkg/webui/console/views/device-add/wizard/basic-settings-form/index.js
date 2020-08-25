@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import React from 'react'
+import { defineMessages } from 'react-intl'
 
 import Input from '@ttn-lw/components/input'
 import Wizard from '@ttn-lw/components/wizard'
@@ -82,6 +83,7 @@ const BasicSettingsForm = props => {
               }
               required
               showPrefixes
+              glossaryTerm={lwVersion < 104 ? 'AppEUI' : 'JoinEUI'}
             />
           )}
           <Form.Field
@@ -93,6 +95,7 @@ const BasicSettingsForm = props => {
             description={sharedMessages.deviceEUIDescription}
             required={isOTAA || lwVersion === 104}
             component={Input}
+            glossaryTerm="DevEUI"
           />
         </>
       )}

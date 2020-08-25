@@ -20,6 +20,7 @@ import { injectIntl } from 'react-intl'
 import Icon from '@ttn-lw/components/icon'
 
 import { withEnv } from '@ttn-lw/lib/components/env'
+import stringToSlug from '@ttn-lw/lib/string-to-slug'
 
 import PropTypes from '@ttn-lw/lib/prop-types'
 import { url as urlPattern } from '@ttn-lw/lib/regexp'
@@ -135,6 +136,8 @@ const DocLink = function(props) {
     primary,
     disabled,
     to,
+    beforeIcon,
+    afterIcon,
     onClick,
     env: {
       config: { documentationBaseUrl },
@@ -163,9 +166,9 @@ const DocLink = function(props) {
       name={name}
       onClick={onClick}
     >
-      <Icon className={style.docIcon} icon="book" />
+      {beforeIcon && <Icon className={style.docIcon} icon={beforeIcon} />}
       {children}
-      <Icon className={style.icon} icon="launch" />
+      {afterIcon && <Icon className={style.icon} icon={afterIcon} />}
     </a>
   )
 }
@@ -176,6 +179,8 @@ DocLink.propTypes = {
   name: PropTypes.string,
   path: PropTypes.string.isRequired,
   showVisited: PropTypes.bool,
+  beforeIcon: PropTypes.string,
+  afterIcon: PropTypes.string,
   to: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.shape({
@@ -193,7 +198,29 @@ DocLink.defaultProps = {
   name: undefined,
   showVisited: false,
   to: undefined,
+  beforeIcon: 'book',
+  afterIcon: 'launch',
 }
+
+const GlossaryLink = function({ term, hideTerm, ...rest }) {
+  const urlTerm = stringToSlug(term)
+  return (
+    <Link.DocLink path={'/reference/glossary#' + urlTerm} {...rest}>
+      {!hideTerm && term}
+    </Link.DocLink>
+  )
+}
+
+GlossaryLink.propTypes = {
+  term: PropTypes.string.isRequired,
+  hideTerm: PropTypes.bool,
+}
+
+GlossaryLink.defaultProps = {
+  hideTerm: false,
+}
+
+Link.GlossaryLink = injectIntl(GlossaryLink)
 
 const AnchorLink = function(props) {
   const {
