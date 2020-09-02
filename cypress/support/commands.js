@@ -103,6 +103,24 @@ Cypress.Commands.add('createUser', user => {
   cy.clearLocalStorage()
 })
 
+// Helper function to create a new application programmatically.
+Cypress.Commands.add('createApplication', (ownerId, application) => {
+  const baseUrl = Cypress.config('baseUrl')
+
+  const token = JSON.parse(window.localStorage.getItem(`accessToken-${stringToHash('/console')}`))
+  expect(token).to.have.property('access_token')
+
+  // Create application.
+  cy.request({
+    method: 'POST',
+    url: `${baseUrl}/api/v3/users/${ownerId}/applications`,
+    body: { application },
+    headers: {
+      Authorization: `Bearer ${token.access_token}`,
+    },
+  })
+})
+
 // Helper function to quickly seed the database to a fresh state using a
 // previously generated sql dump.
 Cypress.Commands.add('dropAndSeedDatabase', () => {
