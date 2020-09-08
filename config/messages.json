@@ -2213,6 +2213,15 @@
       "file": "applicationserver.go"
     }
   },
+  "error:pkg/applicationserver:unimplemented": {
+    "translations": {
+      "en": "unimplemented"
+    },
+    "description": {
+      "package": "pkg/applicationserver",
+      "file": "grpc.go"
+    }
+  },
   "error:pkg/applicationserver:unknown_session": {
     "translations": {
       "en": "unknown session"
