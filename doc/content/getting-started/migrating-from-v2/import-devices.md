@@ -13,7 +13,7 @@ Open the application you created and click the button **Import end devices**
 
 {{< figure src="../import-end-devices.png" alt="import devices" >}}
 
-Select `The Things Stack JSON` as the Format and upload the `devices.json` file.
+Select `The Things Stack JSON` as the **Format** and upload the `devices.json` file.
 
 {{< figure src="../upload-file.png" alt="upload devices.json file" >}}
 
