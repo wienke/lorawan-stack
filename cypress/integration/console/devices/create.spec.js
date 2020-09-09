@@ -156,7 +156,7 @@ describe('End device create', () => {
           force: true,
         },
       )
-      cy.findByLabelTest('Supports class B').check()
+      cy.findByLabelText('Supports class B').check()
       cy.findByLabelText('Device address').type(device.dev_addr)
       cy.findByLabelText('NwkSKey').type(device.nwk_s_key)
       cy.findByRole('heading', { name: /Advanced settings/ }).click()
