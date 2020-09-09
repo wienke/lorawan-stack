@@ -1,5 +1,5 @@
 ---
-title: "Create Device.json"
+title: "Create devices.json"
 description: ""
 weight: 10
 ---
