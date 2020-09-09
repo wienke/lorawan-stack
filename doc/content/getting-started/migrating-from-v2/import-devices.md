@@ -11,7 +11,7 @@ Create a new application on {{% tts %}} where the end devices will be imported. 
 
 ## Import Devices
 
-To import your devices to the application you [created]({{% relref "create-application" %}}), use the `devices.json` file you exported using the V2 CLI.
+To import your devices to the application you created, use the `devices.json` file you exported using the V2 CLI.
 
 The devices.json file can be imported using the **Console** or the **CLI**. 
 
