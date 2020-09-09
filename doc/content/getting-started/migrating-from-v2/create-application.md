@@ -1,6 +1,6 @@
 ---
 title: Create Application
-weight: 20
+weight: 30
 ---
 
 ## Create a New Application on {{% tts %}}
