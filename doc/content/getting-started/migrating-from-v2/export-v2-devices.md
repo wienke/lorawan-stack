@@ -1,5 +1,5 @@
 ---
-title: Export End Devices From V2
+title: Export End Devices from V2
 weight: 20
 ---
 
