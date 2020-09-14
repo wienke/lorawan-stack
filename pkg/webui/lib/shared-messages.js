@@ -162,7 +162,6 @@ export default defineMessages({
   general: 'General',
   generalInformation: 'General information',
   generalSettings: 'General settings',
-  glossaryLinkTitle: 'Click here for an explanation of this field',
   hardware: 'Hardware',
   hardwareVersion: 'Hardware version',
   homeNetID: 'Home NetID',

@@ -202,10 +202,10 @@ DocLink.defaultProps = {
   afterIcon: 'launch',
 }
 
-const GlossaryLink = function({ term, hideTerm, ...rest }) {
+const GlossaryLink = ({ term, hideTerm, ...rest }) => {
   const urlTerm = stringToSlug(term)
   return (
-    <Link.DocLink path={'/reference/glossary#' + urlTerm} {...rest}>
+    <Link.DocLink path={`/reference/glossary#${urlTerm}`} {...rest}>
       {!hideTerm && term}
     </Link.DocLink>
   )
@@ -220,7 +220,7 @@ GlossaryLink.defaultProps = {
   hideTerm: false,
 }
 
-Link.GlossaryLink = injectIntl(GlossaryLink)
+Link.GlossaryLink = GlossaryLink
 
 const AnchorLink = function(props) {
   const {

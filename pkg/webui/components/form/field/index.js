@@ -29,7 +29,11 @@ import FormContext from '../context'
 
 import style from './field.styl'
 
-import sharedMessages from '@ttn-lw/lib/shared-messages'
+import { defineMessages } from 'react-intl'
+
+const m = defineMessages({
+  glossaryLinkTitle: 'Click here for an explanation of this field',
+})
 
 export function getPassThroughProps(props, excludeProps) {
   const rest = {}
@@ -235,7 +239,7 @@ class FormField extends React.Component {
           <Message content={title} className={style.title} />
           {hasGlossaryTerm && (
             <Link.GlossaryLink
-              title={sharedMessages.glossaryLinkTitle}
+              title={m.glossaryLinkTitle}
               hideTerm
               beforeIcon=""
               afterIcon="help"
