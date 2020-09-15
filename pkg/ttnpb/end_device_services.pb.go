@@ -97,8 +97,8 @@ type EndDeviceRegistryClient interface {
 	// After creating a device in the EndDeviceRegistry (Identity Server), it still
 	// needs to be created in the NsEndDeviceRegistry, AsEndDeviceRegistry and JsEndDeviceRegistry.
 	Create(ctx context.Context, in *CreateEndDeviceRequest, opts ...grpc.CallOption) (*EndDevice, error)
-	// Get the end device with the given identifiers, selecting the fields specified
-	// in the field mask.
+	// Get the end device with the given identifiers. To return additional fields,
+	// specify them in the field mask.
 	// More or less fields may be returned, depending on the rights of the caller.
 	Get(ctx context.Context, in *GetEndDeviceRequest, opts ...grpc.CallOption) (*EndDevice, error)
 	// Get the identifiers of the end device that has the given EUIs registered.
@@ -184,8 +184,8 @@ type EndDeviceRegistryServer interface {
 	// After creating a device in the EndDeviceRegistry (Identity Server), it still
 	// needs to be created in the NsEndDeviceRegistry, AsEndDeviceRegistry and JsEndDeviceRegistry.
 	Create(context.Context, *CreateEndDeviceRequest) (*EndDevice, error)
-	// Get the end device with the given identifiers, selecting the fields specified
-	// in the field mask.
+	// Get the end device with the given identifiers. To return additional fields,
+	// specify them in the field mask.
 	// More or less fields may be returned, depending on the rights of the caller.
 	Get(context.Context, *GetEndDeviceRequest) (*EndDevice, error)
 	// Get the identifiers of the end device that has the given EUIs registered.
